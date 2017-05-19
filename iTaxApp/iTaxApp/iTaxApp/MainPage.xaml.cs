@@ -12,7 +12,7 @@ namespace iTaxApp
 
         void OnCreateRide(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new RidePage());
         }
 
         void OnHistory(object sender, EventArgs e)
