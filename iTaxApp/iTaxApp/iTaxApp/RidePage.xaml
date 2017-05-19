@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iTaxApp.RidePage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="20, 40, 20, 20"
+                    Android="20, 20, 20, 20"
+                    WinPhone="20, 20, 20, 20" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="15">
+                <Label Text="Your location:"/>
+                <Entry x:Name="location" Placeholder="Your location"/>
+                <Label Text="Your destination:"/>
+                <Entry x:Name="destination" Placeholder="Your destination"/>
+                <Label Text="MAP HERE"/>
+                <Button x:Name="extrasButton" Text="Add extras.." Clicked="OnExtras"/>
+                <Label Text="Price:"/>
+                <Label Text="price here" XAlign="End"/>
+                <Button x:Name="orderButton" Text="Place order" Clicked="OnOrder"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    
