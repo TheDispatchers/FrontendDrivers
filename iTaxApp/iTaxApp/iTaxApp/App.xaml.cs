@@ -12,7 +12,7 @@ namespace iTaxApp
 		public App ()
 		{
 			InitializeComponent();
-
+            //haha hehe
 			MainPage = new iTaxApp.MainPage();
 		}
 
