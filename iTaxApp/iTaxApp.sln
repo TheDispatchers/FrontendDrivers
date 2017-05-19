@@ -7,12 +7,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "iTaxApp", "iTaxApp\iTaxApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTaxApp.Android", "iTaxApp\iTaxApp.Android\iTaxApp.Android.csproj", "{C5D4207D-D56D-4300-8A58-B8FD6BDA3C5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTaxApp.iOS", "iTaxApp\iTaxApp.iOS\iTaxApp.iOS.csproj", "{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		iTaxApp\iTaxApp\iTaxApp.projitems*{4e3a8b8e-a9f4-4939-a824-288f55371493}*SharedItemsImports = 13
-		iTaxApp\iTaxApp\iTaxApp.projitems*{88fe6c97-a0c3-45b4-9ad8-0cfaab15d047}*SharedItemsImports = 4
 		iTaxApp\iTaxApp\iTaxApp.projitems*{c5d4207d-d56d-4300-8a58-b8fd6bda3c5a}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,26 +63,6 @@ Global
 		{C5D4207D-D56D-4300-8A58-B8FD6BDA3C5A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{C5D4207D-D56D-4300-8A58-B8FD6BDA3C5A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{C5D4207D-D56D-4300-8A58-B8FD6BDA3C5A}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Ad-Hoc|Any CPU.ActiveCfg = Ad-Hoc|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.AppStore|Any CPU.ActiveCfg = AppStore|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Debug|iPhone.Build.0 = Debug|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Release|Any CPU.ActiveCfg = Release|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Release|iPhone.ActiveCfg = Release|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Release|iPhone.Build.0 = Release|iPhone
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{88FE6C97-A0C3-45B4-9AD8-0CFAAB15D047}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
