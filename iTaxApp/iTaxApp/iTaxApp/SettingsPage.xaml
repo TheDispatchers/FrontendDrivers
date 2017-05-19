@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="iTaxApp.SettingsPage" Title="Settings">
+    <ContentPage.Content>
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="Settings">
+                    <ViewCell>
+                        <Entry x:Name="email" Placeholder="New e-mail address"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Entry x:Name="username" Placeholder="New username"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Entry x:Name="oldpassword" Placeholder="Enter old password" IsPassword="true"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Entry x:Name="newpassword" Placeholder="Enter new password" IsPassword="true"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Entry x:Name="confirmnewpassword" Placeholder="Confirm new password" IsPassword="true"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Entry x:Name="firstname" Placeholder="Change first name"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Entry x:Name="lastname" Placeholder="Change last name"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Picker x:Name="cartype" Title="Change preferred car type"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Button x:Name="save" Text="Save" Clicked="OnSave"/>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>
