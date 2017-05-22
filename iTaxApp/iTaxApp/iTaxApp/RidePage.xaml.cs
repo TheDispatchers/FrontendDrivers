@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace iTaxApp
@@ -15,8 +16,9 @@ namespace iTaxApp
 		public RidePage ()
 		{
 			InitializeComponent ();
+            
 
-		}
+        }
         void OnExtras(object sender, EventArgs e)
         {
 

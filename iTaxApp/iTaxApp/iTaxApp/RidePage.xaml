@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="iTaxApp.RidePage">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
@@ -19,6 +20,11 @@
                 <Label Text="Your destination:"/>
                 <Entry x:Name="destination" Placeholder="Your destination"/>
                 <Label Text="MAP HERE"/>
+                <maps:Map WidthRequest="320" HeightRequest="200"
+                    x:Name="MyMap"
+                    IsShowingUser="true"
+                    MapType="Satellite"
+                    />
                 <Button x:Name="extrasButton" Text="Add extras.." Clicked="OnExtras"/>
                 <Label Text="Price:"/>
                 <Label Text="price here" XAlign="End"/>
