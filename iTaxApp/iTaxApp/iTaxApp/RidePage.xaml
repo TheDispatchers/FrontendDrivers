@@ -23,7 +23,7 @@
                 <maps:Map WidthRequest="320" HeightRequest="200"
                     x:Name="MyMap"
                     IsShowingUser="true"
-                    MapType="Hybrid"
+                    MapType="Satellite"
                     />
                 <Button x:Name="extrasButton" Text="Add extras.." Clicked="OnExtras"/>
                 <Label Text="Price:"/>

@@ -16,7 +16,7 @@ namespace iTaxApp.Droid
 		{
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
-            Xamarin.FormsMaps.Init(this, bundle);
+            Xamarin.FormsMaps.Init(this, bundle); //This initiates the Maps API
             base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
