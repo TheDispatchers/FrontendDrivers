@@ -8,6 +8,7 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="iTaxApp.Android"></application>
-	<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBHeIZBpoJWJ3YqtGMSzkORkvfukyvvaRw" />
+	<application android:label="iTaxApp.Android">
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBHeIZBpoJWJ3YqtGMSzkORkvfukyvvaRw" />
+  </application>
 </manifest>

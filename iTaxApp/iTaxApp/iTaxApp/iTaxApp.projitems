@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)MapPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegisterPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
