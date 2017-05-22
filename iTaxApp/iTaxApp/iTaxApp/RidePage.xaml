@@ -19,11 +19,11 @@
                 <Entry x:Name="location" Placeholder="Your location"/>
                 <Label Text="Your destination:"/>
                 <Entry x:Name="destination" Placeholder="Your destination"/>
-                <Label Text="MAP HERE"/>
                 <maps:Map WidthRequest="320" HeightRequest="200"
                     x:Name="MyMap"
                     IsShowingUser="true"
                     MapType="Satellite"
+                    
                     />
                 <Button x:Name="extrasButton" Text="Add extras.." Clicked="OnExtras"/>
                 <Label Text="Price:"/>
