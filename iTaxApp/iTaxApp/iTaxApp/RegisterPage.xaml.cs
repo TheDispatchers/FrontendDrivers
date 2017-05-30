@@ -16,6 +16,7 @@ namespace iTaxApp
         {
             InitializeComponent();
             var carTypesList = new List<string>();
+            carTypesList.Add("Any");
             carTypesList.Add("Truck (Pick-Up)");
             carTypesList.Add("Sedan");
             carTypesList.Add("Van");
@@ -28,5 +29,6 @@ namespace iTaxApp
         {
 
         }
+
     }
 }

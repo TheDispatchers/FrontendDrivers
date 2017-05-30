@@ -1,21 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Plugin.Geolocator;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace iTaxApp
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RidePage : ContentPage
-	{
-		public RidePage ()
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RidePage : ContentPage
+    {
+
+        Geocoder geoCoder;
+
+        public RidePage()
+        {
+            InitializeComponent();
+            geoCoder = new Geocoder();
+
+
+            /*
             var position = new Position(54.9134468, 9.7827599); // Latitude, Longitude
             var pin = new Pin
             {
@@ -33,7 +36,49 @@ namespace iTaxApp
             */
 
         }
-        void OnExtras(object sender, EventArgs e)
+
+
+        async void OnRefresh(object sender, EventArgs e)
+        {
+            Pin pin;
+            MyMap.Pins.Clear();
+            var locator = CrossGeolocator.Current;
+            var pos = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+            Console.WriteLine("Position Status: {0}", pos.Timestamp);
+            Console.WriteLine("Position Latitude: {0}", pos.Latitude);
+            Console.WriteLine("Position Longitude: {0}", pos.Longitude);
+            location.Text = pos.Latitude + ", " + pos.Longitude;
+            latitude.Text = "Latitude: " + pos.Latitude;
+            longitude.Text = "Longitude: " + pos.Longitude;
+
+            var position = new Position(pos.Latitude, pos.Longitude);
+            pin = new Pin
+            {
+                Type = PinType.Place,
+                Position = position,
+                Label = "Location",
+                Address = "Your taxi will arrive to this place."
+            };
+            MyMap.Pins.Add(pin);
+            string[] myAddress = new string[3];
+            {
+                var possibleAddresses = await geoCoder.GetAddressesForPositionAsync(position);
+                int counter = 0;
+               
+                foreach (var address in possibleAddresses)
+                {
+                    if (counter < 1)
+                    {
+                        reverseGeocodedOutputLabel.Text += address + "\n";
+                        Console.WriteLine("Address:: " + address);
+                        counter++;
+                    }
+                    
+                }
+
+            }
+        }
+        public void OnExtras(object sender, EventArgs e)
         {
 
         }
@@ -41,5 +86,6 @@ namespace iTaxApp
         {
 
         }
+
     }
 }

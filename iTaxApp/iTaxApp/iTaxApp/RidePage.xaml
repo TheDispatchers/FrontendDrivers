@@ -15,7 +15,14 @@
                      HorizontalOptions="FillAndExpand"
                      Orientation="Vertical"
                      Spacing="15">
-                <Label Text="Your location:"/>
+
+                <Label Text="Reverse geocode:" />
+                <Button Text="Reverse Geocode" />
+                <Label x:Name="reverseGeocodedOutputLabel" />
+                <Label x:Name="addressLbl" Text="Your address:"/>
+                <Label x:Name="latitude"  Text="Latitude: "/>
+                <Label x:Name="longitude" Text="Longitude: "/>
+                <Button x:Name="refreshButton" Text="Refresh location" Clicked="OnRefresh"/>
                 <Entry x:Name="location" Placeholder="Your location"/>
                 <Label Text="Your destination:"/>
                 <Entry x:Name="destination" Placeholder="Your destination"/>
