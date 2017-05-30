@@ -15,22 +15,21 @@
                      HorizontalOptions="FillAndExpand"
                      Orientation="Vertical"
                      Spacing="15">
-
-                <Label Text="Reverse geocode:" />
-                <Button Text="Reverse Geocode" />
-                <Label x:Name="reverseGeocodedOutputLabel" />
-                <Label x:Name="addressLbl" Text="Your address:"/>
-                <Label x:Name="latitude"  Text="Latitude: "/>
-                <Label x:Name="longitude" Text="Longitude: "/>
-                <Button x:Name="refreshButton" Text="Refresh location" Clicked="OnRefresh"/>
-                <Entry x:Name="location" Placeholder="Your location"/>
                 <Label Text="Your destination:"/>
                 <Entry x:Name="destination" Placeholder="Your destination"/>
+                <Label Text="Your start location:"/>
+                <Entry x:Name="location" Placeholder="Your start location"/>
+                <Label x:Name="addressLbl" Text="Your current location:"/>
+                <Label x:Name="reverseGeocodedOutputLabel"/>
+                <Label x:Name="latitude"  Text="Latitude: "/>
+                <Label x:Name="longitude" Text="Longitude: "/>
+                <Label Text="Your destination's GPS coordinates:"/>
+                <Label x:Name="geocodedOutputLabel"/>
+                <Button x:Name="refreshButton" Text="Calculate route" Clicked="OnRefresh"/>
                 <maps:Map WidthRequest="320" HeightRequest="200"
                     x:Name="MyMap"
                     IsShowingUser="true"
                     MapType="Satellite"
-                    
                     />
                 <Button x:Name="extrasButton" Text="Add extras.." Clicked="OnExtras"/>
                 <Label Text="Price:"/>
