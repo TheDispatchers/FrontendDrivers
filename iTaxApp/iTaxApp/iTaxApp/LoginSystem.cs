@@ -1,5 +1,4 @@
-﻿using System.Text;
-
+﻿
 namespace Core
 {
     public static class LoginSystem
@@ -15,11 +14,16 @@ namespace Core
             {
                 return false;
             }
-
+            /*
+            SqlCommand cmd = new SqlCommand("login", On);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@value", txtValue.Text);
+            int rowAffected = cmd.ExecuteNonQuery();
+            */
         }
         public static bool Register(string email, string username, string password)
         {
-            //TODO: Login function
+            //TODO: Register function
             if (username.Equals("iTax") && password.Equals("pass"))
             {
                 return true;
