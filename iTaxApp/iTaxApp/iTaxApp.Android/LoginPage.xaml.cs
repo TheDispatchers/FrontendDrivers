@@ -31,6 +31,7 @@ namespace iTaxApp
             {
                 await this.DisplayAlert("Login", "User " + client.username + " logged in.", "Continue");
                 await Navigation.PushAsync(new MainPage());
+                Navigation.RemovePage(this);
             }
             else
             {
