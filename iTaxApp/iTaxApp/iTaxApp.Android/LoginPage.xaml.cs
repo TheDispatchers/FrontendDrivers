@@ -1,12 +1,12 @@
-﻿using System;
+﻿using iTaxApp;
+using System;
 using Xamarin.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
+[assembly: Xamarin.Forms.Dependency(typeof(MessageAndroid))]
 namespace iTaxApp
 {
     public partial class LoginPage : ContentPage
     {
-        bool loggedin;
 
         public LoginPage()
         {
@@ -15,29 +15,26 @@ namespace iTaxApp
 
         async void OnLogin(object sender, EventArgs e)
         {
+            User client;
             if (username.Text != null || password.Text != null)
             {
-                loggedin = Core.LoginSystem.Login(username.Text, password.Text);
-                if (loggedin)
-                {
-                    await this.DisplayAlert("Login", "User " + username.Text + " sucessfully logged in.", "Continue");
-                    await Navigation.PushAsync(new MainPage());
-                }
-                else
-                {
-                    await this.DisplayAlert("Login", "User " + username.Text + " NOT logged in. Wrong username or password.", "Try again");
-                }
-                /*  translatedNumber = Core.iTaxAppTranslator.ToNumber(phoneNumberText.Text);
-                  if (!string.IsNullOrWhiteSpace(translatedNumber))
-                  {
-                      callButton.IsEnabled = true;
-                      callButton.Text = "Call " + translatedNumber;
-                  }
-                  else
-                  {
-                      callButton.IsEnabled = false;
-                      callButton.Text = "Call";
-                  }*/
+                client = new User(username.Text, Core.LoginSystem.CalculateMD5Hash(password.Text));
+                client.function = "login";
+            }
+            else
+            {
+                client = new User("user", "pass");
+            }
+            object obj = SynchronousSocketClient.StartClient("login", client);
+            client = (User)obj;
+            if (client.sessionKey.Length > 1)
+            {
+                await this.DisplayAlert("Login", "User " + client.username + " logged in.", "Continue");
+                await Navigation.PushAsync(new MainPage());
+            }
+            else
+            {
+                await this.DisplayAlert("Login", "Make sure you entered correct credentials and that you are connected to the internet.", "Continue");
             }
 
         }
@@ -54,26 +51,16 @@ namespace iTaxApp
                 await Navigation.PushAsync(new RegisterPage());
             }
         }
-        async void OnTest(object sender, EventArgs e)
+        void OnTest(object sender, EventArgs e)
         {
-            User client;
-            if (username.Text != null || password.Text != null)
+            bool test = SynchronousSocketClient.TestConnection();
+            if (test)
             {
-                client = new User(username.Text, password.Text);
-                client.function = "login";
-            } else
-            {
-                client = new User("user", "pass");
-            }
-            object obj = SynchronousSocketClient.StartClient("login", client);
-            client = (User)obj;
-            if (client.sessionKey.Length > 1)
-            {
-                await this.DisplayAlert("Test", "Connection established. Session key: "+ client.sessionKey, "Continue");
+                DependencyService.Get<IMessage>().ShortAlert("Connection established.");
             }
             else
             {
-                await this.DisplayAlert("Test", "Connection NOT established.", "Continue");
+                DependencyService.Get<IMessage>().ShortAlert("Connection NOT established.");
             }
         }
     }

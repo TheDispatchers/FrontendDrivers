@@ -1,4 +1,7 @@
 ﻿
+using System.Security.Cryptography;
+using System.Text;
+
 namespace Core
 {
     public static class LoginSystem
@@ -21,6 +24,23 @@ namespace Core
             int rowAffected = cmd.ExecuteNonQuery();
             */
         }
+        public static string CalculateMD5Hash(string input)
+
+        {
+            MD5 md5 = MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hash = md5.ComputeHash(inputBytes);
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
+
+        }
+
+
         public static bool Register(string email, string username, string password)
         {
             //TODO: Register function
@@ -34,6 +54,7 @@ namespace Core
             }
 
         }
+
 
         static bool Contains(this string keyString, char c)
         {

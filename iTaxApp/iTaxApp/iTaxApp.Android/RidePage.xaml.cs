@@ -19,6 +19,7 @@ namespace iTaxApp
         }
         async void OnRefresh(object sender, EventArgs e)
         {
+            reverseGeocodedOutputLabel.Text = "Searching..";
             MyMap.Pins.Clear();
             var locator = CrossGeolocator.Current;
             var pos = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
@@ -40,7 +41,7 @@ namespace iTaxApp
             {
                 var possibleAddresses = await geoCoder.GetAddressesForPositionAsync(position);
                 int counter = 0;
-
+                reverseGeocodedOutputLabel.Text = "";
                 foreach (var address in possibleAddresses)
                 {
                     if (counter < 1)
@@ -57,7 +58,7 @@ namespace iTaxApp
                 var approximateLocations = await geoCoder.GetPositionsForAddressAsync(addressToCode);
                 foreach (var destinationpos in approximateLocations)
                 {
-                    geocodedOutputLabel.Text += destinationpos.Latitude + ", " + destinationpos.Longitude + "\n";
+                    geocodedOutputLabel.Text = destinationpos.Latitude + ", " + destinationpos.Longitude + "\n";
                     pin = new Pin
                     {
                         Type = PinType.Place,

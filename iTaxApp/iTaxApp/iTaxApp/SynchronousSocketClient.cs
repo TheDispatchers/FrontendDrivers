@@ -8,9 +8,13 @@ namespace iTaxApp
 {
     public class SynchronousSocketClient
     {
-        
         public static object StartClient(string function, object o)
         {
+            int bytesSent;
+            int bytesRec;
+            string json;
+            User user;
+
             // Data buffer for incoming data.
             byte[] bytes = new byte[1024];
             Console.WriteLine("Start!");
@@ -33,29 +37,28 @@ namespace iTaxApp
                     switch (function)
                     {
                         case "login":
-                            User user;
                             user = (User)o;
-                            string json = JsonConvert.SerializeObject(user);
+                            json = JsonConvert.SerializeObject(user);
                             Console.WriteLine(json);
                             byte[] login = Encoding.ASCII.GetBytes(json);
-                            int bytesSent = sender.Send(login);
-                            int bytesRec = sender.Receive(bytes);
+                            bytesSent = sender.Send(login);
+                            bytesRec = sender.Receive(bytes);
                             string sessionKey = Encoding.ASCII.GetString(bytes, 0, bytesRec);
                             Console.WriteLine(sessionKey);
                             user.sessionKey = sessionKey;
                             o = user;
                             break;
                         case "register":
-                            /*user = (User)o;
-                            string json = JsonConvert.SerializeObject(user);
+                            NewUser newUser = (NewUser)o;
+                            json = JsonConvert.SerializeObject(newUser);
                             Console.WriteLine(json);
-                            byte[] login = Encoding.ASCII.GetBytes(json);
-                            int bytesSent = sender.Send(login);
-                            int bytesRec = sender.Receive(bytes);
-                            string sessionKey = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                            Console.WriteLine(sessionKey);
-                            user.sessionKey = sessionKey;
-                            o = user;*/
+                            byte[] register = Encoding.ASCII.GetBytes(json);
+                            bytesSent = sender.Send(register);
+                            bytesRec = sender.Receive(bytes);
+                            string response = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                            Console.WriteLine(response);
+                            newUser.response = response;
+                            o = newUser;
                             break;
                     }
                     sender.Shutdown(SocketShutdown.Both);
@@ -86,9 +89,42 @@ namespace iTaxApp
                 return false;
             }
         }
-        public void Login()
+        public static bool TestConnection()
         {
+            int bytesSent;
+            int bytesRec;
+            byte[] bytes = new byte[1024];
+            Console.WriteLine("Start!");
+            try
+            {
+                IPAddress ipAddress = new IPAddress(new byte[] { 86, 52, 212, 76 });
+                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 8113);
+                Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                try
+                {
+                    sender.Connect(remoteEP);
+                    Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
+                    byte[] test = Encoding.ASCII.GetBytes("test");
+                    bytesSent = sender.Send(test);
+                    bytesRec = sender.Receive(bytes);
+                    string recieved = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                    Console.WriteLine(recieved);
+                    sender.Shutdown(SocketShutdown.Both);
+                    sender.Close();
+                    return true;
 
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
         }
 
     }

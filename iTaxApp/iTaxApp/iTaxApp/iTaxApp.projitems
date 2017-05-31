@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IDialer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoginSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NewUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SynchronousSocketClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
   </ItemGroup>
