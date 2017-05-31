@@ -7,7 +7,7 @@ namespace iTaxApp
 {
     public partial class LoginPage : ContentPage
     {
-
+        User client;
         public LoginPage()
         {
             InitializeComponent();
@@ -15,7 +15,7 @@ namespace iTaxApp
 
         async void OnLogin(object sender, EventArgs e)
         {
-            User client;
+            
             if (username.Text != null || password.Text != null)
             {
                 client = new User(username.Text, Core.LoginSystem.CalculateMD5Hash(password.Text));
@@ -27,7 +27,7 @@ namespace iTaxApp
             }
             object obj = SynchronousSocketClient.StartClient("login", client);
             client = (User)obj;
-            if (client.sessionKey.Length > 1)
+            if (!client.sessionKey.Equals("invalid"))
             {
                 await this.DisplayAlert("Login", "User " + client.username + " logged in.", "Continue");
                 await Navigation.PushAsync(new MainPage());
