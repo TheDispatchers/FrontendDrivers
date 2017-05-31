@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace iTaxApp
 {
@@ -51,6 +52,28 @@ namespace iTaxApp
                     "No"))
             {
                 await Navigation.PushAsync(new RegisterPage());
+            }
+        }
+        async void OnTest(object sender, EventArgs e)
+        {
+            User client;
+            if (username.Text != null || password.Text != null)
+            {
+                client = new User(username.Text, password.Text);
+                client.function = "login";
+            } else
+            {
+                client = new User("user", "pass");
+            }
+            object obj = SynchronousSocketClient.StartClient("login", client);
+            client = (User)obj;
+            if (client.sessionKey.Length > 1)
+            {
+                await this.DisplayAlert("Test", "Connection established. Session key: "+ client.sessionKey, "Continue");
+            }
+            else
+            {
+                await this.DisplayAlert("Test", "Connection NOT established.", "Continue");
             }
         }
     }
