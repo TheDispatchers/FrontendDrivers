@@ -8,7 +8,7 @@ namespace iTaxApp
 {
     public class SynchronousSocketClient
     {
-        User user;
+        
         public static object StartClient(string function, object o)
         {
             // Data buffer for incoming data.
@@ -33,6 +33,7 @@ namespace iTaxApp
                     switch (function)
                     {
                         case "login":
+                            User user;
                             user = (User)o;
                             string json = JsonConvert.SerializeObject(user);
                             Console.WriteLine(json);
@@ -45,7 +46,7 @@ namespace iTaxApp
                             o = user;
                             break;
                         case "register":
-                            user = (User)o;
+                            /*user = (User)o;
                             string json = JsonConvert.SerializeObject(user);
                             Console.WriteLine(json);
                             byte[] login = Encoding.ASCII.GetBytes(json);
@@ -54,7 +55,7 @@ namespace iTaxApp
                             string sessionKey = Encoding.ASCII.GetString(bytes, 0, bytesRec);
                             Console.WriteLine(sessionKey);
                             user.sessionKey = sessionKey;
-                            o = user;
+                            o = user;*/
                             break;
                     }
                     sender.Shutdown(SocketShutdown.Both);
