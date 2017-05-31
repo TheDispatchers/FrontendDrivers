@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Core
 {
@@ -15,11 +17,33 @@ namespace Core
             {
                 return false;
             }
+            /*
+            SqlCommand cmd = new SqlCommand("login", On);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@value", txtValue.Text);
+            int rowAffected = cmd.ExecuteNonQuery();
+            */
+        }
+        public static string CalculateMD5Hash(string input)
+
+        {
+            MD5 md5 = MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hash = md5.ComputeHash(inputBytes);
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
 
         }
+
+
         public static bool Register(string email, string username, string password)
         {
-            //TODO: Login function
+            //TODO: Register function
             if (username.Equals("iTax") && password.Equals("pass"))
             {
                 return true;
@@ -30,6 +54,7 @@ namespace Core
             }
 
         }
+
 
         static bool Contains(this string keyString, char c)
         {

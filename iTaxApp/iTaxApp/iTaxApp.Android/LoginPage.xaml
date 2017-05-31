@@ -20,6 +20,7 @@
                 <Entry x:Name="password" Placeholder="Password" IsPassword="true"/>
                 <Button x:Name="loginButton" Text="Login" Clicked="OnLogin"/>
                 <Button x:Name="registerButton" Text="Register" Clicked="OnRegister"/>
+                <Button x:Name="testButton" Text="Test Connection" Clicked="OnTest"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
