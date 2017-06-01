@@ -15,6 +15,8 @@ namespace iTaxApp
 
         async void OnLogin(object sender, EventArgs e)
         {
+            //await Navigation.PushAsync(new MainPage());
+            
             
             if (username.Text != null || password.Text != null)
             {
@@ -27,6 +29,7 @@ namespace iTaxApp
             }
             object obj = SynchronousSocketClient.StartClient("login", client);
             client = (User)obj;
+            App.Current.Properties["sessionKey"] = client.sessionKey;
             if (!client.sessionKey.Equals("invalid"))
             {
                 await this.DisplayAlert("Login", "User " + client.username + " logged in.", "Continue");
@@ -37,7 +40,7 @@ namespace iTaxApp
             {
                 await this.DisplayAlert("Login", "Make sure you entered correct credentials and that you are connected to the internet.", "Continue");
             }
-
+            
         }
 
         async void OnRegister(object sender, EventArgs e)

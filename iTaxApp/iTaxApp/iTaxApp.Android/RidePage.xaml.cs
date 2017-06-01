@@ -12,10 +12,19 @@ namespace iTaxApp
     {
         Geocoder geoCoder;
         Pin pin;
+        string fromLatitude;
+        string fromLongitude;
+        string toLatitude;
+        string toLongitude;
         public RidePage()
         {
             InitializeComponent();
             geoCoder = new Geocoder();
+            customMap.RouteCoordinates.Add(new Position(37.785559, -122.396728));
+            customMap.RouteCoordinates.Add(new Position(37.780624, -122.390541));
+            customMap.RouteCoordinates.Add(new Position(37.777113, -122.394983));
+            customMap.RouteCoordinates.Add(new Position(37.776831, -122.394627));
+            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(37.79752, -122.40183), Distance.FromMiles(1.0)));
         }
         async void OnRefresh(object sender, EventArgs e)
         {
@@ -26,6 +35,8 @@ namespace iTaxApp
 
             latitude.Text = "Latitude: " + pos.Latitude;
             longitude.Text = "Longitude: " + pos.Longitude;
+            fromLatitude = pos.Latitude.ToString();
+            fromLongitude = pos.Longitude.ToString();
             var position = new Position(pos.Latitude, pos.Longitude);
             pin = new Pin
             {
@@ -35,7 +46,11 @@ namespace iTaxApp
                 Address = "Your taxi will pick you up here."
             };
             MyMap.Pins.Add(pin);
-
+            customMap.RouteCoordinates.Add(new Position(37.785559, -122.396728));
+            customMap.RouteCoordinates.Add(new Position(37.780624, -122.390541));
+            customMap.RouteCoordinates.Add(new Position(37.777113, -122.394983));
+            customMap.RouteCoordinates.Add(new Position(37.776831, -122.394627));
+            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(37.79752, -122.40183), Distance.FromMiles(1.0)));
 
             string[] myAddress = new string[3];
             {
@@ -59,6 +74,8 @@ namespace iTaxApp
                 foreach (var destinationpos in approximateLocations)
                 {
                     geocodedOutputLabel.Text = destinationpos.Latitude + ", " + destinationpos.Longitude + "\n";
+                    toLatitude = destinationpos.Latitude.ToString();
+                    toLongitude = destinationpos.Longitude.ToString();
                     pin = new Pin
                     {
                         Type = PinType.Place,
@@ -76,7 +93,12 @@ namespace iTaxApp
         }
         void OnOrder(object sender, EventArgs e)
         {
-
+            Ride ride;
+            string sessionKey = Convert.ToString(App.Current.Properties["sessionKey"]);
+            Console.WriteLine("Ses key: " + sessionKey);
+            ride = new Ride(fromLatitude, fromLongitude, toLatitude, toLongitude, sessionKey);
+            object obj = SynchronousSocketClient.StartClient("oderRide", ride);
+            Navigation.PushAsync(new ExtrasPage());
         }
 
     }
