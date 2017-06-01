@@ -13,6 +13,7 @@ namespace iTaxApp
             int bytesSent;
             int bytesRec;
             string json;
+            string response;
             User user;
 
             // Data buffer for incoming data.
@@ -41,6 +42,8 @@ namespace iTaxApp
                             json = JsonConvert.SerializeObject(user);
                             Console.WriteLine(json);
                             byte[] login = Encoding.ASCII.GetBytes(json);
+                            bytesSent = 0;
+                            bytesRec = 0;
                             bytesSent = sender.Send(login);
                             bytesRec = sender.Receive(bytes);
                             string sessionKey = Encoding.ASCII.GetString(bytes, 0, bytesRec);
@@ -55,14 +58,26 @@ namespace iTaxApp
                             byte[] register = Encoding.ASCII.GetBytes(json);
                             bytesSent = sender.Send(register);
                             bytesRec = sender.Receive(bytes);
-                            string response = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                            response = Encoding.ASCII.GetString(bytes, 0, bytesRec);
                             Console.WriteLine(response);
                             newUser.response = response;
                             o = newUser;
                             break;
+                        case "orderRide":
+                            Ride ride = (Ride)o;
+                            json = JsonConvert.SerializeObject(ride);
+                            Console.WriteLine(json);
+                            byte[] newRide = Encoding.ASCII.GetBytes(json);
+                            bytesSent = sender.Send(newRide);
+                            bytesRec = sender.Receive(bytes);
+                            response = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                            Console.WriteLine(response);
+                            ride.response = response;
+                            o = ride;
+                            break;
                     }
-                    sender.Shutdown(SocketShutdown.Both);
-                    sender.Close();
+                    //sender.Shutdown(SocketShutdown.Both);
+                    //sender.Close();
                     return o;
                 }
                 catch (ArgumentNullException ane)
@@ -109,8 +124,8 @@ namespace iTaxApp
                     bytesRec = sender.Receive(bytes);
                     string recieved = Encoding.ASCII.GetString(bytes, 0, bytesRec);
                     Console.WriteLine(recieved);
-                    sender.Shutdown(SocketShutdown.Both);
-                    sender.Close();
+                    //sender.Shutdown(SocketShutdown.Both);
+                    //sender.Close();
                     return true;
 
                 }
