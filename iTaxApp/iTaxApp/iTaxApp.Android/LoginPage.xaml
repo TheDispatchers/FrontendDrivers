@@ -15,11 +15,10 @@
                      Orientation="Vertical"
                      Spacing="15">
                 <Label Text="Login to iTax" FontSize="Large" XAlign="Center"/>
-                <Label Text="Please enter your credentials or register:"/>
-                <Entry x:Name="username" Placeholder="Username"/>
+                <Label Text="Please enter your credentials"/>
+                <Entry x:Name="userID" Placeholder="User ID"/>
                 <Entry x:Name="password" Placeholder="Password" IsPassword="true"/>
                 <Button x:Name="loginButton" Text="Login" Clicked="OnLogin"/>
-                <Button x:Name="registerButton" Text="Register" Clicked="OnRegister"/>
                 <Button x:Name="testButton" Text="Test Connection" Clicked="OnTest"/>
             </StackLayout>
         </ScrollView>

@@ -76,7 +76,7 @@ namespace iTaxApp
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().ShortAlert("Please enter a username.");
+                    DependencyService.Get<IMessage>().ShortAlert("Please enter a ID.");
                 }
             }
             else

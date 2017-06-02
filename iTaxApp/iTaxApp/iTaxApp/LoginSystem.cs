@@ -6,24 +6,6 @@ namespace Core
 {
     public static class LoginSystem
     {
-        public static bool Login(string username, string password)
-        {
-            //TODO: Login function
-            if (username.Equals("iTax") && password.Equals("pass"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            /*
-            SqlCommand cmd = new SqlCommand("login", On);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@value", txtValue.Text);
-            int rowAffected = cmd.ExecuteNonQuery();
-            */
-        }
         public static string CalculateMD5Hash(string input)
 
         {
@@ -40,20 +22,6 @@ namespace Core
 
         }
 
-
-        public static bool Register(string email, string username, string password)
-        {
-            //TODO: Register function
-            if (username.Equals("iTax") && password.Equals("pass"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
 
 
         static bool Contains(this string keyString, char c)

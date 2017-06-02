@@ -18,10 +18,10 @@ namespace iTaxApp
             //await Navigation.PushAsync(new MainPage());
             
             
-            if (username.Text != null || password.Text != null)
+            if (userID.Text != null || password.Text != null)
             {
-                client = new User(username.Text, Core.LoginSystem.CalculateMD5Hash(password.Text));
-                client.function = "login";
+                client = new User(userID.Text, Core.LoginSystem.CalculateMD5Hash(password.Text));
+                client.function = "loginDriver";
             }
             else
             {
@@ -32,7 +32,7 @@ namespace iTaxApp
             App.Current.Properties["sessionKey"] = client.sessionKey;
             if (!client.sessionKey.Equals("invalid"))
             {
-                await this.DisplayAlert("Login", "User " + client.username + " logged in.", "Continue");
+                await this.DisplayAlert("Login", "User " + client.ID + " logged in.", "Continue");
                 await Navigation.PushAsync(new MainPage());
                 Navigation.RemovePage(this);
             }
